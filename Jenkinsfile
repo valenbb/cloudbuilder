@@ -1,4 +1,8 @@
 node {
+	stage('Clone repository') {
+        	checkout scm
+    	}
+
 	stage('Test TF') {
 		sh 'terraform --version'
 	}
