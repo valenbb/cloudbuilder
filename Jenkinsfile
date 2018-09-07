@@ -11,7 +11,7 @@ node {
 		sh 'aws --version'
 	}
 	
-	stage {
+	stage('Test Chef') {
 		sh 'chef -v'
 	}
 
