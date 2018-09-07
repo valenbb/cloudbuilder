@@ -8,6 +8,6 @@ node {
 	}
 	
 	stage('Test AWS') {
-		sh '/usr/local/bin/aws --version'
+		sh 'aws --version'
 	}
 }
