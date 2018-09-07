@@ -8,7 +8,7 @@ node {
 	}
 	
 	stage('Test AWS') {
-		sh 'aws ec2 describe-keypairs'
+		sh 'aws ec2 describe-key-pairs'
 	}
 	
 	stage('Test Chef') {
