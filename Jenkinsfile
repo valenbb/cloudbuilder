@@ -10,4 +10,9 @@ node {
 	stage('Test AWS') {
 		sh 'aws --version'
 	}
+	
+	stage {
+		sh 'chef -v'
+	}
+
 }
