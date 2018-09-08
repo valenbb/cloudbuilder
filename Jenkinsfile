@@ -7,14 +7,14 @@ node {
 		sh '''
 		  source /var/lib/jenkins/.bashrc
 		'''
-		sh 'terraform init'
+		sh 'terraform init -input=false'
 	}
 	
 	stage('Terraform Plan') {
-		sh 'terraform plan'
+		sh 'terraform plan -input=false'
 	}
 	
 	stage('Terraform Apply') {
-		sh 'terraform apply'
+		sh 'terraform apply -input=false -auto-approve'
 	}
 }

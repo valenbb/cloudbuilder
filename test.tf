@@ -1,4 +1,6 @@
-provider "aws" {}
+provider "aws" {
+	version = "~> 1.35"
+}
 
 resource "aws_instance" "test" {
   ami           = "ami-0ff8a91507f77f867"
