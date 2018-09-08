@@ -4,7 +4,9 @@ node {
     	}
 
 	stage('Terraform Init') {
-		sh 'source /var/lib/jenkins/.bashrc
+		sh '''
+		  source /var/lib/jenkins/.bashrc
+		'''
 		sh 'terraform init'
 	}
 	
