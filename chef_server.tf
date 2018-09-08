@@ -68,7 +68,8 @@ resource "aws_instance" "chef_server" {
 				  chef-server-ctl reconfigure
 				  opscode-reporting-ctl reconfigure –accept-license
 				  apt upgrade -y                                 
-				  
+				  EOF
+ 
   tags {
     Name 	= "CHEF-SERVER-PRD"
     owner	= "Andy Lalla"
