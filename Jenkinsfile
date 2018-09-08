@@ -1,20 +1,25 @@
 node {
 	stage('Clone repository') {
-        	checkout scm
+            checkout scm
     	}
 
 	stage('Terraform Init') {
-		sh '''
-		  source /var/lib/jenkins/.bashrc
-		'''
-		sh 'terraform init -input=false'
+	    sh 'terraform init -input=false'
 	}
-	
+
 	stage('Terraform Plan') {
-		sh 'terraform plan -input=false'
+             withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_KEY_ID']]) {
+                sh 'export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}'
+	       	sh 'AWS_SECRET_KEY=${AWS_SECRET_ACCESS_KEY}'
+	        sh 'terraform plan -input=false'
+	    }
 	}
 	
 	stage('Terraform Apply') {
-		sh 'terraform apply -input=false -auto-approve'
+	    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_KEY_ID']]) {
+                sh 'export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}'
+                sh 'AWS_SECRET_KEY=${AWS_SECRET_ACCESS_KEY}'
+	        sh 'terraform apply -input=false -auto-approve'
+	    }
 	}
 }
