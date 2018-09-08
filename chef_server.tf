@@ -3,7 +3,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws security group" "chef_sg" {
+resource "aws_security_group" "chef_sg" {
   name 		= "CHEF-SERVER-SG"
   description 	= "Allow inbound traffic from home only"
   vpc_id      	= "vpc-ce4b4eb5"
@@ -61,3 +61,4 @@ resource "aws_instance" "chef_server" {
     builder	= "terraform" 
   }
 }
+
