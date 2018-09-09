@@ -8,13 +8,13 @@ yum update -y
 wget https://packages.chef.io/files/stable/chef-server/12.17.33/el/7/chef-server-core-12.17.33-1.el7.x86_64.rpm -P /tmp
 
 # Install chef server
-rpm -ivh /tmp/chef-server-core_12.18.13-1_amd64.deb
+rpm -ivh /tmp/chef-server-core-12.17.33-1.el7.x86_64.rpm
 chef-server-ctl reconfigure
 
 # Setup chef admin user and org
 mkdir -p .chef
 chef-server-ctl user-create admin Admin User andy.gitc@gmail.com 'Che3f@AWS' --filename /root/.chef/chef.pem
-chef-server-ctl org-create esn ‘MyXingfu Net’ –association_user admin --filename /root/.chef/esn-validator.pem
+chef-server-ctl org-create esn 'MyXingfu Net' –association_user admin --filename /root/.chef/esn-validator.pem
 
 # Install chef web ui
 chef-server-ctl install chef-manage
