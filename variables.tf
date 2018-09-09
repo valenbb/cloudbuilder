@@ -10,6 +10,7 @@ variable "instance_type" {
 
 # CentOS 7 AMI
 variable "aws_ami" {
+  description = "Image Id"
   default = "ami-0eaf7f3ca4d177abb"
 }
 
@@ -30,7 +31,8 @@ variable "subnet_id" {
 
 variable "cidr_access" {
   description = "CIDR of originating traffic"
-  default = "100.4.210.205/32"
+  type = "list"
+  default = ["100.4.210.205/32"]
 }
 
 variable "az_id" {
