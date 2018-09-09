@@ -12,21 +12,21 @@ resource "aws_security_group" "chef_sg" {
     from_port	= 22
     to_port	= 22
     protocol	= "tcp"
-    cidr_blocks	= ["100.4.210.205/32"]
+    cidr_blocks	= "${var.cidr_access}"
   }
   
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["100.4.210.205/32"]
+    cidr_blocks = "${var.cidr_access}"
   }
 
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["100.4.210.205/32"]
+    cidr_blocks = "${var.cidr_access}"
   }
   
   egress {
@@ -37,10 +37,10 @@ resource "aws_security_group" "chef_sg" {
   }
 
   tags {
-    Name 	= "{var.tag_name}-SG"
-    owner	= "{var.tag_owner}"
-    env		= "{var.tag_env}"
-    builder	= "{var.tag_builder}"
+    Name 	= "${var.tag_name}-SG"
+    owner	= "${var.tag_owner}"
+    env		= "${var.tag_env}"
+    builder	= "${var.tag_builder}"
   }
 }
 
@@ -51,14 +51,14 @@ resource "aws_instance" "chef_server" {
   key_name			= "${var.key_name}"  
   availability_zone 		= "${var.az_id}"
   subnet_id 			= "${var.subnet_id}" 
-  associate_public_ip_address 	= true
+  associate_public_ip_address 	= "${var.public_ip}"
   user_data			= "${file("chef_server.sh")}"
  
   tags {
-    Name 	= "{var.tag_name}-{var.tag_env}"
-    owner	= "{var.tag_owner}"
-    env		= "{var.tag_env}"
-    builder	= "{var.tag_builder}"
+    Name 	= "${var.tag_name}-${var.tag_env}"
+    owner	= "${var.tag_owner}"
+    env		= "${var.tag_env}"
+    builder	= "${var.tag_builder}"
   }
 }
 

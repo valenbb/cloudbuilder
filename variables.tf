@@ -29,9 +29,20 @@ variable "subnet_id" {
   default = "subnet-07f4345b"
 }
 
+variable "cidr_access" {
+  type = "list"
+  description = "CIDR of originating traffic"
+  default = ["100.4.210.205/32"]
+}
+
 variable "az_id" {
   description = "Availability Zone"
   default = "us-east-1b"
+}
+
+variable "public_ip" {
+  description = "Associate ec2 instance wth Public IP"
+  default = true
 }
 
 variable "tag_name" {
