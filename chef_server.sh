@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Run updates
+# Run updates and install dependencies
+yum install -y wget nc
 yum update -y
 
 # Download chef server package
