@@ -29,12 +29,6 @@ variable "subnet_id" {
   default = "subnet-07f4345b"
 }
 
-variable "cidr_access" {
-  description = "CIDR of originating traffic"
-  type = "list"
-  default = ["100.4.210.205/32"]
-}
-
 variable "az_id" {
   description = "Availability Zone"
   default = "us-east-1b"
