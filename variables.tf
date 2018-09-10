@@ -32,7 +32,7 @@ variable "subnet_id" {
 variable "cidr_access" {
   type = "list"
   description = "CIDR of originating traffic"
-  default = ["100.4.210.205/32"]
+  default = ["100.4.210.205/32", "10.0.0.0/16"]
 }
 
 variable "az_id" {
